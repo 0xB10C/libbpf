@@ -1339,6 +1339,9 @@ static int calc_pt_regs_off(const char *reg_name)
 	if (sscanf(reg_name, "x%d", &reg_num) == 1) {
 		if (reg_num >= 0 && reg_num < 31)
 			return offsetof(struct user_pt_regs, regs[reg_num]);
+	} else if (sscanf(reg_name, "v%d", &reg_num) == 1) {
+    if (reg_num >= 0 && reg_num < 31)
+      return offsetof(struct user_pt_regs, regs[reg_num]);
 	} else if (strcmp(reg_name, "sp") == 0) {
 		return offsetof(struct user_pt_regs, sp);
 	}
